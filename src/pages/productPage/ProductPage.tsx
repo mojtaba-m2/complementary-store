@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import Container from "../../components/container/Container";
+import Button from "../../components/button/Button";
 
 function ProductPage() {
   const params = useParams();
@@ -30,7 +31,9 @@ function ProductPage() {
             />
 
             <div>
-              <button>add to cart</button>
+              <Button style={{ padding: "6px 12px" }} variant="primary">
+                Add to cart
+              </Button>
             </div>
           </div>
         </div>
