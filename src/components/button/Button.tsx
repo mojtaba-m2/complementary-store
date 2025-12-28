@@ -3,12 +3,20 @@ import { ComponentProps } from "react";
 type TVariant = "primary" | "secondry" | "danger" | "warning" | "success";
 
 type TButoon = ComponentProps<"button"> & {
-  variant: TVariant;
+  variant?: TVariant;
 };
 
 function Button({ children, style, variant, ...rest }: TButoon) {
   return (
-    <button style={{ ...style, ...checkVariant(variant) }} {...rest}>
+    <button
+      style={{
+        borderRadius: "6px",
+        padding: "4px 6px",
+        ...style,
+        ...checkVariant(variant),
+      }}
+      {...rest}
+    >
       {children}
     </button>
   );
@@ -16,9 +24,9 @@ function Button({ children, style, variant, ...rest }: TButoon) {
 
 export default Button;
 
-function checkVariant(variant: TVariant) {
+function checkVariant(variant?: TVariant) {
   if (variant === "primary") {
-    return { backgroundColor: "blue", color: "white" };
+    return { backgroundColor: "#008bff", color: "white" };
   } else if (variant === "secondry") {
     return { backgroundColor: "gray", color: "white" };
   } else if (variant === "danger") {

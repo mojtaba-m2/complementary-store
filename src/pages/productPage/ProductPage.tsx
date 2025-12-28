@@ -31,7 +31,7 @@ function ProductPage() {
             />
 
             <div>
-              <Button style={{ padding: "6px 12px" }} variant="primary">
+              <Button className="mt-2 w-full" variant="primary">
                 Add to cart
               </Button>
             </div>

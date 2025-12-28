@@ -16,7 +16,9 @@ function Navbar() {
           </ul>
 
           <div>
-            <button>سبد خرید</button>
+            <button>
+              <Link to={"/cart"}>سبد خرید</Link>
+            </button>
           </div>
         </div>
       </Container>
