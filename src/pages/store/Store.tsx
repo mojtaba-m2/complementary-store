@@ -6,12 +6,41 @@ function Store() {
   return (
     <div>
       <Container>
-        <h1 className="text-right mt-6">محصولات پر فروش</h1>
+        <h1 className="text-right mt-6 text-base font-medium md:text-2xl ">
+          محصولات پر فروش
+        </h1>
 
-        <div className="grid grid-cols-4 gap-4 mt-6">
-          <Link to={`/product/${1}`}>
-            <ProductItem />
-          </Link>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+          <div>
+            <Link to={`/product/${1}`}>
+              <ProductItem />
+            </Link>
+          </div>
+          <div>
+            <Link to={`/product/${1}`}>
+              <ProductItem />
+            </Link>
+          </div>
+          <div>
+            <Link to={`/product/${1}`}>
+              <ProductItem />
+            </Link>
+          </div>
+          <div>
+            <Link to={`/product/${1}`}>
+              <ProductItem />
+            </Link>
+          </div>
+          <div>
+            <Link to={`/product/${1}`}>
+              <ProductItem />
+            </Link>
+          </div>
+          <div>
+            <Link to={`/product/${1}`}>
+              <ProductItem />
+            </Link>
+          </div>
         </div>
       </Container>
     </div>
