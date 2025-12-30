@@ -1,8 +1,19 @@
 import { Link, useParams } from "react-router-dom";
 import Container from "../../components/container/Container";
 import ProductItem from "../../components/productItem/ProductItem";
+import { useEffect, useState } from "react";
+import { getProducts } from "../../services/api";
+import { ProductsType } from "../../types/serverType";
 
 function Store() {
+  const [products, setProducts] = useState<ProductsType[]>([]);
+
+  useEffect(() => {
+    getProducts().then((res) => {
+      setProducts(res);
+    });
+  }, []);
+
   return (
     <div>
       <Container>
@@ -11,36 +22,11 @@ function Store() {
         </h1>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-          <div>
-            <Link to={`/product/${1}`}>
-              <ProductItem />
+          {products.map((item) => (
+            <Link key={item.id} to={`/product/${item.id}`}>
+              <ProductItem {...item} />
             </Link>
-          </div>
-          <div>
-            <Link to={`/product/${1}`}>
-              <ProductItem />
-            </Link>
-          </div>
-          <div>
-            <Link to={`/product/${1}`}>
-              <ProductItem />
-            </Link>
-          </div>
-          <div>
-            <Link to={`/product/${1}`}>
-              <ProductItem />
-            </Link>
-          </div>
-          <div>
-            <Link to={`/product/${1}`}>
-              <ProductItem />
-            </Link>
-          </div>
-          <div>
-            <Link to={`/product/${1}`}>
-              <ProductItem />
-            </Link>
-          </div>
+          ))}
         </div>
       </Container>
     </div>
