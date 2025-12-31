@@ -1,6 +1,6 @@
-import { ProductsType } from "../../types/serverType";
+import { ProductType } from "../../types/serverType";
 
-type TProductItem = ProductsType;
+type TProductItem = ProductType;
 
 function ProductItem({ name, srcImg, description, price }: TProductItem) {
   return (

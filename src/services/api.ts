@@ -9,3 +9,9 @@ export async function getProducts() {
 
   return data.data;
 }
+
+export async function getProduct(id: string | number) {
+  const productData = await client(`/supplements/${id}`);
+
+  return productData.data;
+}
