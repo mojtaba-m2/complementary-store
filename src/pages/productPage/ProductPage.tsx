@@ -4,6 +4,8 @@ import Button from "../../components/button/Button";
 import { useEffect, useState } from "react";
 import { getProduct } from "../../services/api";
 import { ProductType } from "../../types/serverType";
+import { useShopingCartContext } from "../../context/ShopingCartContext";
+import { loadConfigFromFile } from "vite";
 
 function ProductPage() {
   const params = useParams<{ id: string }>();
@@ -15,6 +17,13 @@ function ProductPage() {
       setProducts(res);
     });
   }, []);
+
+  const {
+    handleIncreaseProductQuty,
+    cartContent,
+    handleDecreaseProductQuty,
+    getProductQuty,
+  } = useShopingCartContext();
 
   return (
     <div>
@@ -32,8 +41,26 @@ function ProductPage() {
             <img className="" src={`../../${product?.srcImg}`} alt="" />
 
             <div>
-              <Button className="mt-2 w-full" variant="primary">
+              <Button
+                onClick={() => {
+                  handleIncreaseProductQuty(Number(params.id));
+                }}
+                className="mt-2 w-full"
+                variant="primary"
+              >
                 Add to cart
+              </Button>
+
+              {getProductQuty(Number(params.id))}
+
+              <Button
+                onClick={() => {
+                  handleDecreaseProductQuty(Number(params.id));
+                }}
+                className="mt-2 w-full"
+                variant="primary"
+              >
+                -
               </Button>
             </div>
           </div>
