@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { getProduct } from "../../services/api";
 import { ProductType } from "../../types/serverType";
 import { useShopingCartContext } from "../../context/ShopingCartContext";
-import { loadConfigFromFile } from "vite";
 
 function ProductPage() {
   const params = useParams<{ id: string }>();
@@ -23,6 +22,7 @@ function ProductPage() {
     cartContent,
     handleDecreaseProductQuty,
     getProductQuty,
+    handleRemoveProduct,
   } = useShopingCartContext();
 
   return (
@@ -43,40 +43,52 @@ function ProductPage() {
             <div>
               {getProductQuty(Number(params.id)) === 0 ? (
                 <Button
-                  className="mt-2 w-full"
+                  className="mt-2 w-full font-semibold"
                   variant="primary"
                   onClick={() => {
                     handleIncreaseProductQuty(Number(params.id));
                   }}
                 >
-                  Add to cart
+                  افزودن به سبد خرید
                 </Button>
               ) : (
-                <div className="grid grid-cols-3">
+                <>
+                  <div className="grid grid-cols-3">
+                    <Button
+                      className="mt-2 w-full font-semibold text-lg"
+                      variant="primary"
+                      onClick={() => {
+                        handleIncreaseProductQuty(Number(params.id));
+                      }}
+                    >
+                      +
+                    </Button>
+
+                    <span className="flex justify-center items-center">
+                      {getProductQuty(Number(params.id))}
+                    </span>
+
+                    <Button
+                      className="mt-2 w-full font-semibold text-lg"
+                      variant="primary"
+                      onClick={() => {
+                        handleDecreaseProductQuty(Number(params.id));
+                      }}
+                    >
+                      -
+                    </Button>
+                  </div>
+
                   <Button
-                    className="mt-2 w-full"
-                    variant="primary"
+                    className="mt-2 w-full font-semibold"
+                    variant="danger"
                     onClick={() => {
-                      handleIncreaseProductQuty(Number(params.id));
+                      handleRemoveProduct(Number(params.id));
                     }}
                   >
-                    +
+                    حذف
                   </Button>
-
-                  <span className="flex justify-center items-center">
-                    {getProductQuty(Number(params.id))}
-                  </span>
-
-                  <Button
-                    className="mt-2 w-full "
-                    variant="primary"
-                    onClick={() => {
-                      handleDecreaseProductQuty(Number(params.id));
-                    }}
-                  >
-                    -
-                  </Button>
-                </div>
+                </>
               )}
             </div>
           </div>
