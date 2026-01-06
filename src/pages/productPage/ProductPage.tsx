@@ -41,27 +41,43 @@ function ProductPage() {
             <img className="" src={`../../${product?.srcImg}`} alt="" />
 
             <div>
-              <Button
-                onClick={() => {
-                  handleIncreaseProductQuty(Number(params.id));
-                }}
-                className="mt-2 w-full"
-                variant="primary"
-              >
-                Add to cart
-              </Button>
+              {getProductQuty(Number(params.id)) === 0 ? (
+                <Button
+                  className="mt-2 w-full"
+                  variant="primary"
+                  onClick={() => {
+                    handleIncreaseProductQuty(Number(params.id));
+                  }}
+                >
+                  Add to cart
+                </Button>
+              ) : (
+                <div className="grid grid-cols-3">
+                  <Button
+                    className="mt-2 w-full"
+                    variant="primary"
+                    onClick={() => {
+                      handleIncreaseProductQuty(Number(params.id));
+                    }}
+                  >
+                    +
+                  </Button>
 
-              {getProductQuty(Number(params.id))}
+                  <span className="flex justify-center items-center">
+                    {getProductQuty(Number(params.id))}
+                  </span>
 
-              <Button
-                onClick={() => {
-                  handleDecreaseProductQuty(Number(params.id));
-                }}
-                className="mt-2 w-full"
-                variant="primary"
-              >
-                -
-              </Button>
+                  <Button
+                    className="mt-2 w-full "
+                    variant="primary"
+                    onClick={() => {
+                      handleDecreaseProductQuty(Number(params.id));
+                    }}
+                  >
+                    -
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
